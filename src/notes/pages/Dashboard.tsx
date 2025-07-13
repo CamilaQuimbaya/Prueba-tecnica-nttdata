@@ -6,6 +6,8 @@ import { obtenerNotas } from '../services/noteService';
 import FormularioNota from '../components/FormularioNota';
 import ListaNotas from '../components/ListaNotas';
 import Modal from '../../components/Modal';
+import IndicadorProgreso from '../components/IndicadorProgreso';
+
 
 interface Nota {
   _id: string;
@@ -20,6 +22,9 @@ const Dashboard = () => {
   const [error, setError] = useState('');
   const [notaEditando, setNotaEditando] = useState<Nota | null>(null);
   const [mostrarModal, setMostrarModal] = useState(false);
+  const total = notas.length;
+  const completadas = notas.filter(n => n.completed).length;
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -65,6 +70,8 @@ const Dashboard = () => {
       </header>
 
       {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+      <IndicadorProgreso total={total} completadas={completadas} />
 
       <ListaNotas
         notas={notas}
