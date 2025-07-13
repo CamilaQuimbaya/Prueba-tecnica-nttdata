@@ -30,7 +30,10 @@ const Dashboard = () => {
   const completadas = notas.filter(n => n.completed).length;
   const [busqueda, setBusqueda] = useState('');
   const [cargando, setCargando] = useState(false);
-  const [vista, setVista] = useState<'lista' | 'grid'>('lista');
+  const [vista, setVista] = useState<'lista' | 'grid'>(
+  () => (localStorage.getItem('vistaNotas') as 'lista' | 'grid') || 'lista'
+);
+
 
 
 
@@ -93,20 +96,27 @@ const Dashboard = () => {
 
 
       <IndicadorProgreso total={total} completadas={completadas} />
-      <div className="flex gap-2 mb-4">
-  <button
-    onClick={() => setVista('lista')}
-    className={`px-3 py-1 rounded ${vista === 'lista' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-  >
-    Lista
-  </button>
-  <button
-    onClick={() => setVista('grid')}
-    className={`px-3 py-1 rounded ${vista === 'grid' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-  >
-    Grid
-  </button>
-</div>
+      <div className="mb-4 flex gap-4">
+          <button
+            className={`px-4 py-2 rounded ${vista === 'lista' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            onClick={() => {
+              setVista('lista');
+              localStorage.setItem('vistaNotas', 'lista');
+            }}
+          >
+            Lista
+          </button>
+          <button
+            className={`px-4 py-2 rounded ${vista === 'grid' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            onClick={() => {
+              setVista('grid');
+              localStorage.setItem('vistaNotas', 'grid');
+            }}
+          >
+            Grid
+          </button>
+        </div>
+
 
 
       <ListaNotas
