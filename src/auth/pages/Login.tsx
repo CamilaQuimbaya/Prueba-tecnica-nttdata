@@ -25,7 +25,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Iniciar sesión</h2>
+      <h2 className='text-3xl font-bold underline'>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"

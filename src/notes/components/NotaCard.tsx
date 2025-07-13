@@ -36,19 +36,26 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
   };
 
   return (
-    <div style={{ border: '1px solid gray', padding: '1rem', margin: '1rem 0' }}>
-      <h4>{nota.titulo}</h4>
+    <div className="border p-4 rounded mb-4 shadow">
+      <h4 className="font-bold text-lg">{nota.titulo}</h4>
       <p>{nota.nota}</p>
-      <p>Estado: {nota.completed ? '✅ Completada' : '❌ Pendiente'}</p>
-      <small>{new Date(nota.fecha).toLocaleString()}</small>
-      <br />
-      <button onClick={toggleEstado}>
-        Marcar como {nota.completed ? 'pendiente' : 'completada'}
-      </button>{' '}
-      <button onClick={() => onEditar(nota)}>Editar</button>{' '}
-      <button onClick={handleEliminar} style={{ color: 'red' }}>
-        Eliminar
-      </button>
+      <p className="text-sm text-gray-500">
+        Estado: {nota.completed ? '✅ Completada' : '❌ Pendiente'}
+      </p>
+      <small className="text-gray-400">
+        {new Date(nota.fecha).toLocaleString()}
+      </small>
+      <div className="mt-2 flex gap-2">
+        <button onClick={toggleEstado} className="text-blue-600 hover:underline">
+          Marcar como {nota.completed ? 'pendiente' : 'completada'}
+        </button>
+        <button onClick={() => onEditar(nota)} className="text-yellow-600 hover:underline">
+          Editar
+        </button>
+        <button onClick={handleEliminar} className="text-red-600 hover:underline">
+          Eliminar
+        </button>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import Login from './auth/pages/Login';
 import PrivateRoute from './routes/PrivateRoute';
 import Dashboard from './notes/pages/Dashboard';
 import Register from './auth/pages/Register';
+import './index.css';
 
 const App = () => {
   return (

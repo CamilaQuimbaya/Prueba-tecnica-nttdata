@@ -46,21 +46,27 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>{notaExistente ? 'Editar nota' : 'Nueva nota'}</h3>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <h3 className="text-xl font-bold">
+        {notaExistente ? 'Editar nota' : 'Nueva nota'}
+      </h3>
       <input
         type="text"
         placeholder="Título"
         value={titulo}
         onChange={e => setTitulo(e.target.value)}
+        className="border p-2 rounded"
       />
       <textarea
         placeholder="Contenido"
         value={nota}
         onChange={e => setNota(e.target.value)}
+        className="border p-2 rounded h-32"
       />
-      <button type="submit">{notaExistente ? 'Guardar cambios' : 'Guardar'}</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        {notaExistente ? 'Guardar cambios' : 'Guardar'}
+      </button>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </form>
   );
 };
