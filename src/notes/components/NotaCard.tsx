@@ -9,6 +9,7 @@ interface Nota {
   nota: string;
   completed: boolean;
   fecha: string;
+  background?: string;
 }
 
 interface Props {
@@ -37,9 +38,9 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
   };
 
   return (
-    <div className="border p-4 rounded mb-4 shadow bg-white">
+    <div className={` p-4 rounded-3xl mb-4 shadow ${nota.background}`}>
       <div className="flex justify-between items-center mb-2">
-        <h4 className="font-bold text-lg">{nota.titulo}</h4>
+        <h4 className="font-bold text-lg text-purple-800">{nota.titulo}</h4>
         <div className="flex items-center gap-2">
           <CheckTarea
             checked={nota.completed}
@@ -49,9 +50,9 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
         </div>
       </div>
 
-      <p className="mb-2">{nota.nota}</p>
+      <p className="mb-2 text-purple-800">{nota.nota}</p>
 
-      <small className="text-gray-400 block mb-2">
+      <small className="text-purple-800 block mb-2">
         {new Date(nota.fecha).toLocaleString()}
       </small>
 

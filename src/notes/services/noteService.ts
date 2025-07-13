@@ -3,6 +3,7 @@ import api from '../../api/axios';
 export interface NuevaNota {
   titulo: string;
   nota: string;
+  background?: string; // Fondo opcional
 }
 
 export const obtenerNotas = () => api.get('/notas');

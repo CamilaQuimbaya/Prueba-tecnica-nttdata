@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import '../../styles/indicadorProgreso.css';
 
 interface Props {
   total: number;
@@ -11,9 +12,9 @@ const IndicadorProgreso = ({ total, completadas }: Props) => {
   const porcentaje = Math.round((completadas / total) * 100);
 
   const getColor = () => {
-    if (porcentaje < 30) return 'bg-red-500';
-    if (porcentaje < 70) return 'bg-yellow-400';
-    return 'bg-green-500';
+    if (porcentaje < 30) return 'bg-pink-500';
+    if (porcentaje < 70) return 'bg-yellow-200';
+    return 'bg-green-200';
   };
 
   const getMensaje = () => {
@@ -25,9 +26,9 @@ const IndicadorProgreso = ({ total, completadas }: Props) => {
   };
 
   return (
-    <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded text-sm text-blue-700">
+    <div className="mb-4 p-3 backgroundProgress text-sm text-white">
       Has completado <strong>{completadas}</strong> de <strong>{total}</strong> tareas
-      <div className="w-full bg-blue-100 rounded-full h-2 mt-2 overflow-hidden">
+      <div className="w-full bg-purple-200 rounded-full h-2 mt-2 overflow-hidden">
         <motion.div
           className={`h-2 rounded-full ${getColor()}`}
           initial={{ width: 0 }}
@@ -35,7 +36,7 @@ const IndicadorProgreso = ({ total, completadas }: Props) => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         />
       </div>
-      <p className="mt-2 text-xs italic text-blue-600">{getMensaje()}</p>
+      <p className="mt-2 text-xs italic text-white">{getMensaje()}</p>
     </div>
   );
 };

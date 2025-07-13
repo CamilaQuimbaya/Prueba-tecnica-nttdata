@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import { crearNota, actualizarNota } from '../services/noteService';
 import EmojiPicker from 'emoji-picker-react';
-import Loader from '../../components/Loader';
-import { mostrarAlertaExito, mostrarError } from '../../utils/alerts';
-
 
 interface Props {
   onNotaGuardada: () => void;
@@ -11,21 +8,27 @@ interface Props {
     _id: string;
     titulo: string;
     nota: string;
+    background?: string;
   };
 }
+
+const fondosDisponibles = [
+  'bg-pink-200', 'bg-yellow-200', 'bg-green-200',
+  'bg-blue-200', 'bg-purple-200', 'bg-white'
+];
 
 const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
   const [titulo, setTitulo] = useState('');
   const [nota, setNota] = useState('');
+  const [background, setBackground] = useState('bg-white');
   const [error, setError] = useState('');
   const [mostrarEmojis, setMostrarEmojis] = useState(false);
-  const [guardando, setGuardando] = useState(false);
-  
 
   useEffect(() => {
     if (notaExistente) {
       setTitulo(notaExistente.titulo);
       setNota(notaExistente.nota);
+      setBackground(notaExistente.background || 'bg-white');
     }
   }, [notaExistente]);
 
@@ -39,23 +42,17 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
     }
 
     try {
-      setGuardando(true);
       if (notaExistente) {
-        await actualizarNota(notaExistente._id, { titulo, nota });
+        await actualizarNota(notaExistente._id, { titulo, nota, background });
       } else {
-        await crearNota({ titulo, nota });
+        await crearNota({ titulo, nota, background });
       }
       setTitulo('');
       setNota('');
+      setBackground('bg-white');
       onNotaGuardada();
-      mostrarAlertaExito('La nota fue guardada exitosamente');
-
     } catch {
       setError('Error al guardar nota');
-      mostrarError('Hubo un error al guardar la nota');
-
-    } finally {
-      setGuardando(false);
     }
   };
 
@@ -64,6 +61,7 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
       <h3 className="text-xl font-bold">
         {notaExistente ? 'Editar nota' : 'Nueva nota'}
       </h3>
+
       <input
         type="text"
         placeholder="Título"
@@ -71,6 +69,7 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
         onChange={e => setTitulo(e.target.value)}
         className="border p-2 rounded"
       />
+
       <div className="relative">
         <textarea
           placeholder="Contenido"
@@ -78,7 +77,6 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
           onChange={e => setNota(e.target.value)}
           className="border p-2 rounded w-full h-32"
         />
-
         <button
           type="button"
           onClick={() => setMostrarEmojis(prev => !prev)}
@@ -101,19 +99,31 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
           </div>
         )}
       </div>
+
+      <div>
+        <label className="block mb-1 font-semibold">Fondo:</label>
+        <div className="flex gap-2 flex-wrap">
+          {fondosDisponibles.map(color => (
+            <button
+              key={color}
+              type="button"
+              onClick={() => setBackground(color)}
+              className={`w-8 h-8 rounded-full border-2 ${
+                background === color ? 'border-black' : 'border-transparent'
+              } ${color}`}
+              title={color}
+            ></button>
+          ))}
+        </div>
+      </div>
+
       <button
         type="submit"
-        disabled={guardando}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
-        {guardando ? (
-          <>
-            <Loader /> Guardando...
-          </>
-        ) : (
-          notaExistente ? 'Guardar cambios' : 'Guardar'
-        )}
+        {notaExistente ? 'Guardar cambios' : 'Guardar'}
       </button>
+
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </form>
   );
