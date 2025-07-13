@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { crearNota, actualizarNota } from '../services/noteService';
+import EmojiPicker from 'emoji-picker-react';
+import Loader from '../../components/Loader';
 
 interface Props {
   onNotaGuardada: () => void;
@@ -14,6 +16,8 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
   const [titulo, setTitulo] = useState('');
   const [nota, setNota] = useState('');
   const [error, setError] = useState('');
+  const [mostrarEmojis, setMostrarEmojis] = useState(false);
+  const [guardando, setGuardando] = useState(false);
 
   useEffect(() => {
     if (notaExistente) {
@@ -32,6 +36,7 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
     }
 
     try {
+      setGuardando(true);
       if (notaExistente) {
         await actualizarNota(notaExistente._id, { titulo, nota });
       } else {
@@ -42,6 +47,8 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
       onNotaGuardada();
     } catch {
       setError('Error al guardar nota');
+    } finally {
+      setGuardando(false);
     }
   };
 
@@ -57,14 +64,48 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
         onChange={e => setTitulo(e.target.value)}
         className="border p-2 rounded"
       />
-      <textarea
-        placeholder="Contenido"
-        value={nota}
-        onChange={e => setNota(e.target.value)}
-        className="border p-2 rounded h-32"
-      />
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        {notaExistente ? 'Guardar cambios' : 'Guardar'}
+      <div className="relative">
+        <textarea
+          placeholder="Contenido"
+          value={nota}
+          onChange={e => setNota(e.target.value)}
+          className="border p-2 rounded w-full h-32"
+        />
+
+        <button
+          type="button"
+          onClick={() => setMostrarEmojis(prev => !prev)}
+          className="absolute bottom-2 left-2 text-xl hover:scale-110 transition"
+          title="Insertar emoji"
+        >
+          😊
+        </button>
+
+        {mostrarEmojis && (
+          <div className="absolute bottom-12 left-2 z-50">
+            <EmojiPicker
+              onEmojiClick={(emojiData) => {
+                setNota(nota + emojiData.emoji);
+                setMostrarEmojis(false);
+              }}
+              height={300}
+              width={250}
+            />
+          </div>
+        )}
+      </div>
+      <button
+        type="submit"
+        disabled={guardando}
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2"
+      >
+        {guardando ? (
+          <>
+            <Loader /> Guardando...
+          </>
+        ) : (
+          notaExistente ? 'Guardar cambios' : 'Guardar'
+        )}
       </button>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </form>

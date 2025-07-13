@@ -8,6 +8,7 @@ import ListaNotas from '../components/ListaNotas';
 import Modal from '../../components/Modal';
 import IndicadorProgreso from '../components/IndicadorProgreso';
 import BarraBusqueda from '../components/BarraBusqueda';
+import Loader from '../../components/Loader';
 
 
 
@@ -27,19 +28,23 @@ const Dashboard = () => {
   const total = notas.length;
   const completadas = notas.filter(n => n.completed).length;
   const [busqueda, setBusqueda] = useState('');
+  const [cargando, setCargando] = useState(false);
 
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const cargarNotas = async () => {
-    try {
-      const { data } = await obtenerNotas();
-      setNotas(data);
-    } catch {
-      setError('Error al cargar notas');
-    }
-  };
+  try {
+    setCargando(true);
+    const { data } = await obtenerNotas();
+    setNotas(data);
+  } catch {
+    setError('Error al cargar notas');
+  } finally {
+    setCargando(false);
+  }
+};
 
   const notasFiltradas = notas.filter(nota =>
   nota.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
@@ -80,6 +85,12 @@ const Dashboard = () => {
       </header>
 
       {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+      {cargando && (
+        <div className="flex justify-center my-8">
+            <Loader />
+        </div>
+        )}
+
       <BarraBusqueda valor={busqueda} onBuscar={setBusqueda} />
 
 
