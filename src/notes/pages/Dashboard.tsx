@@ -9,6 +9,8 @@ import Modal from '../../components/Modal';
 import IndicadorProgreso from '../components/IndicadorProgreso';
 import BarraBusqueda from '../components/BarraBusqueda';
 import Loader from '../../components/Loader';
+import { mostrarDespedida } from '../../utils/alerts';
+
 
 
 
@@ -56,10 +58,12 @@ const Dashboard = () => {
     cargarNotas();
   }, []);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate('/login');
-  };
+  const handleLogout = async () => {
+  dispatch(logout());
+  await mostrarDespedida();
+  navigate('/login');
+};
+
 
   return (
     <div className="p-4">

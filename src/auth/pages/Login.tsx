@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { loginSuccess } from '../slice';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import { login } from '../services/authService';
+import { mostrarBienvenida } from '../../utils/alerts';
 
 const Login = () => {
   const [correo, setCorreo] = useState('');
@@ -18,6 +19,7 @@ const Login = () => {
     try {
       const token = await login({ correo, contrasena });
       dispatch(loginSuccess(token));
+       mostrarBienvenida();
       navigate('/');
     } catch (err) {
       setError('Credenciales inválidas');

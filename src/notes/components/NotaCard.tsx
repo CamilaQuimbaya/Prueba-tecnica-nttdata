@@ -1,5 +1,6 @@
 import { actualizarNota, eliminarNota } from '../services/noteService';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { confirmarEliminacion, mostrarAlertaExito } from '../../utils/alerts';
 
 
 interface Nota {
@@ -27,15 +28,13 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
   };
 
   const handleEliminar = async () => {
-    if (confirm('¿Estás segura de eliminar esta nota?')) {
-      try {
-        await eliminarNota(nota._id);
-        onNotaActualizada();
-      } catch {
-        alert('Error al eliminar nota');
-      }
-    }
-  };
+  const result = await confirmarEliminacion();
+  if (result.isConfirmed) {
+    await eliminarNota(nota._id);
+    onNotaActualizada();
+    mostrarAlertaExito('Nota eliminada');
+  }
+};
 
   return (
     <div className="border p-4 rounded mb-4 shadow">

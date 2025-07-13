@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { crearNota, actualizarNota } from '../services/noteService';
 import EmojiPicker from 'emoji-picker-react';
 import Loader from '../../components/Loader';
+import { mostrarAlertaExito, mostrarError } from '../../utils/alerts';
+
 
 interface Props {
   onNotaGuardada: () => void;
@@ -18,6 +20,7 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
   const [error, setError] = useState('');
   const [mostrarEmojis, setMostrarEmojis] = useState(false);
   const [guardando, setGuardando] = useState(false);
+  
 
   useEffect(() => {
     if (notaExistente) {
@@ -45,8 +48,12 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
       setTitulo('');
       setNota('');
       onNotaGuardada();
+      mostrarAlertaExito('La nota fue guardada exitosamente');
+
     } catch {
       setError('Error al guardar nota');
+      mostrarError('Hubo un error al guardar la nota');
+
     } finally {
       setGuardando(false);
     }

@@ -20,6 +20,7 @@
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.3",
+    "sweetalert2": "^11.22.2",
     "tailwinds": "^0.0.0"
   },
   "devDependencies": {
