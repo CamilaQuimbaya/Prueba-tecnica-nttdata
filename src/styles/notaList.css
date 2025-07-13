@@ -1,4 +1,4 @@
-.backgroundcard{
+.backgroundList{
     /* From https://css.glass */
 background: rgba(255, 255, 255, 0.34);
 border-radius: 16px;
@@ -10,28 +10,28 @@ overflow-y: scroll;
 height: 700px;
 }
 
-.backgroundcard::-webkit-scrollbar {
+.backgroundList::-webkit-scrollbar {
   width: 10px; /* ancho del scroll vertical */
 }
 
-.backgroundcard::-webkit-scrollbar-track {
+.backgroundList::-webkit-scrollbar-track {
   background: rgba(255, 144, 246, 0.282); 
   border-radius: 16px;
 }
 
-.backgroundcard::-webkit-scrollbar-thumb {
+.backgroundList::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.4);
   border-radius: 16px;
   border: 2px solid rgba(255, 255, 255, 0.2); /* borde para efecto 'elevado' */
 }
 
-.backgroundcard::-webkit-scrollbar-thumb:hover {
+.backgroundList::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.6);
 }
 
 /* En dispositivos móviles */
 @media (max-width: 768px) {
-  .backgroundcard {
+  .backgroundList {
     height: auto;
     overflow-y: visible;
   }
