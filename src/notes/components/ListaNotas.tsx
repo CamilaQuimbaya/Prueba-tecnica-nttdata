@@ -18,6 +18,7 @@ interface Props {
 }
 
 const ListaNotas = ({ notas, onActualizar, onEditar, vista }: Props) => {
+  if (notas.length === 0) return null; // 👈 Ocultar si no hay notas
   return (
     <motion.div
       layout
