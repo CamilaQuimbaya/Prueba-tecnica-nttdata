@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../app/hooks';
-import { logout } from '../../auth/slice';
 import { obtenerNotas } from '../services/noteService';
 import FormularioNota from '../components/FormularioNota';
 import ListaNotas from '../components/ListaNotas';
@@ -9,7 +6,9 @@ import Modal from '../../components/Modal';
 import IndicadorProgreso from '../components/IndicadorProgreso';
 import BarraBusqueda from '../components/BarraBusqueda';
 import Loader from '../../components/Loader';
-import { mostrarDespedida } from '../../utils/alerts';
+import LogoutButton from '../../components/LogoutButton';
+import CreateNoteButton from '../components/CreateNoteButton';
+import '../../styles/dashboard.css'
 
 
 
@@ -33,8 +32,7 @@ const Dashboard = () => {
   const [cargando, setCargando] = useState(false);
 
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  
 
   const cargarNotas = async () => {
   try {
@@ -58,35 +56,30 @@ const Dashboard = () => {
     cargarNotas();
   }, []);
 
-  const handleLogout = async () => {
-  dispatch(logout());
-  await mostrarDespedida();
-  navigate('/login');
-};
+
 
 
   return (
-    <div className="p-4">
-      <header className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Mis Notas</h2>
-        <div className="flex gap-4">
-          <button
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+    <div className="p-4 backgroundDashboard min-h-screen ">
+      
+      <header className="flex flex-col md:flex-row items-center md:justify-between gap-4 mb-6  p-6 headerDashboard">
+        <h2 className="text-2xl font-bold text-center md:text-left text-white">Mis Notas</h2>
+
+        <div className="flex justify-center w-full md:w-auto">
+          <BarraBusqueda valor={busqueda} onBuscar={setBusqueda} />
+        </div>
+
+        <div className="flex gap-4 justify-center md:justify-end">
+          <CreateNoteButton
             onClick={() => {
               setNotaEditando(null);
               setMostrarModal(true);
             }}
-          >
-            Nueva Nota
-          </button>
-          <button
-            className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
-            onClick={handleLogout}
-          >
-            Cerrar sesión
-          </button>
+          />
+          <LogoutButton />
         </div>
       </header>
+
 
       {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
       {cargando && (
@@ -95,7 +88,6 @@ const Dashboard = () => {
         </div>
         )}
 
-      <BarraBusqueda valor={busqueda} onBuscar={setBusqueda} />
 
 
       <IndicadorProgreso total={total} completadas={completadas} />
@@ -110,13 +102,13 @@ const Dashboard = () => {
         />
 
         {notas.length === 0 && (
-        <p className="text-sm text-gray-500 text-center mt-4">
+        <p className="text-sm text-white text-center mt-4">
             Aún no tienes notas creadas.
         </p>
         )}
 
         {notas.length > 0 && notasFiltradas.length === 0 && (
-        <p className="text-sm text-gray-500 text-center mt-4">
+        <p className="text-sm text-white text-center mt-4">
             😕 No se encontraron notas que coincidan con "<strong>{busqueda}</strong>"
         </p>
         )}
