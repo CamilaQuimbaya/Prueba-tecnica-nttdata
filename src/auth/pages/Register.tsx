@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { loginSuccess } from '../slice';
 import { register } from '../services/authService';
 import '../../styles/login.css';
+import NoteLoad from '../../components/NoteLoad';
 
 const Register = () => {
   const [nombre, setNombre] = useState('');
@@ -27,8 +28,8 @@ const Register = () => {
 
   return (
     <div className="login-bg">
-      <div className="w-full max-w-md login-card  p-6 rounded-lg shadow-md">
-        <div className="text-center text-5xl mb-2">🧑‍💻</div>
+      <div className="w-full max-w-md login-card  p-6 shadow-md">
+        <div className='flex justify-center'><NoteLoad /></div>
         <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-center mb-2 drop-shadow-md animate-gradient">
           Crea tu cuenta
         </h1>

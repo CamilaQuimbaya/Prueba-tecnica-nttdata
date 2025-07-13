@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
 import { loginSuccess } from '../slice';
-import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import { login } from '../services/authService';
 import { mostrarBienvenida } from '../../utils/alerts';
+import NoteLoad from '../../components/NoteLoad';
 import '../../styles/login.css';
+
 
 
 const Login = () => {
@@ -31,7 +32,7 @@ const Login = () => {
   return (
     <div className="login-bg">
       <div className="w-full max-w-md login-card p-6 rounded-4xl shadow-md">
-        <PencilSquareIcon className="h-12 w-12 mx-auto text-white mb-2" />
+        <div className='flex justify-center'><NoteLoad /></div>
         <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-center mb-2">
           Bienvenido a Mis Notas
         </h1>
