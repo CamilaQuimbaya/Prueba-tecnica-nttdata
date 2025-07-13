@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
 import { loginSuccess } from '../slice';
 import { register } from '../services/authService';
+import '../../styles/login.css';
 
 const Register = () => {
   const [nombre, setNombre] = useState('');
@@ -25,13 +26,13 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+    <div className="login-bg">
+      <div className="w-full max-w-md login-card  p-6 rounded-lg shadow-md">
         <div className="text-center text-5xl mb-2">🧑‍💻</div>
-        <h1 className="text-3xl font-bold text-center mb-2 text-blue-700">
+        <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-center mb-2 drop-shadow-md animate-gradient">
           Crea tu cuenta
         </h1>
-        <h2 className="text-xl font-semibold mb-6 text-center text-gray-800">
+        <h2 className="text-xl font-semibold mb-6 text-center text-white">
           Registro
         </h2>
 
@@ -41,34 +42,34 @@ const Register = () => {
             placeholder="Nombre"
             value={nombre}
             onChange={e => setNombre(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded login-card "
           />
           <input
             type="email"
             placeholder="Correo"
             value={correo}
             onChange={e => setCorreo(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded login-card "
           />
           <input
             type="password"
             placeholder="Contraseña"
             value={contrasena}
             onChange={e => setContrasena(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded login-card "
           />
           <button
             type="submit"
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="neu-button"
           >
             Crear cuenta
           </button>
           {error && <p className="text-red-500 text-sm">{error}</p>}
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-white mt-4">
           ¿Ya tienes una cuenta?{' '}
-          <Link to="/login" className="text-blue-600 hover:underline">
+          <Link to="/login" className="text-pink-600 hover:underline">
             Inicia sesión
           </Link>
         </p>

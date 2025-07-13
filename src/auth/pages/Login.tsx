@@ -5,6 +5,8 @@ import { loginSuccess } from '../slice';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import { login } from '../services/authService';
 import { mostrarBienvenida } from '../../utils/alerts';
+import '../../styles/login.css';
+
 
 const Login = () => {
   const [correo, setCorreo] = useState('');
@@ -27,13 +29,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-        <PencilSquareIcon className="h-12 w-12 mx-auto text-blue-600 mb-2" />
-        <h1 className="text-3xl font-bold text-center mb-2 text-blue-700">
+    <div className="login-bg">
+      <div className="w-full max-w-md login-card p-6 rounded-4xl shadow-md">
+        <PencilSquareIcon className="h-12 w-12 mx-auto text-white mb-2" />
+        <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-center mb-2">
           Bienvenido a Mis Notas
         </h1>
-        <h2 className="text-xl font-semibold mb-6 text-center text-gray-800">
+        <h2 className="text-xl font-semibold mb-6 text-center text-white">
           Iniciar sesión
         </h2>
 
@@ -43,27 +45,27 @@ const Login = () => {
             placeholder="Correo"
             value={correo}
             onChange={e => setCorreo(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded login-card"
           />
           <input
             type="password"
             placeholder="Contraseña"
             value={contrasena}
             onChange={e => setContrasena(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded login-card"
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="neu-button"
           >
             Entrar
           </button>
           {error && <p className="text-red-500 text-sm">{error}</p>}
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-white mt-4">
           ¿Aún no tienes cuenta?{' '}
-          <Link to="/register" className="text-blue-600 hover:underline">
+          <Link to="/register" className="text-pink-400 hover:underline">
             Regístrate aquí
           </Link>
         </p>

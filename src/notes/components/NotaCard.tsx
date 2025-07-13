@@ -1,7 +1,7 @@
 import { actualizarNota, eliminarNota } from '../services/noteService';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { confirmarEliminacion, mostrarAlertaExito } from '../../utils/alerts';
-
+import CheckTarea from '../../components/CheckTarea';
 
 interface Nota {
   _id: string;
@@ -28,27 +28,25 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
   };
 
   const handleEliminar = async () => {
-  const result = await confirmarEliminacion();
-  if (result.isConfirmed) {
-    await eliminarNota(nota._id);
-    onNotaActualizada();
-    mostrarAlertaExito('Nota eliminada');
-  }
-};
+    const result = await confirmarEliminacion();
+    if (result.isConfirmed) {
+      await eliminarNota(nota._id);
+      onNotaActualizada();
+      mostrarAlertaExito('Nota eliminada');
+    }
+  };
 
   return (
-    <div className="border p-4 rounded mb-4 shadow">
+    <div className="border p-4 rounded mb-4 shadow bg-white">
       <div className="flex justify-between items-center mb-2">
         <h4 className="font-bold text-lg">{nota.titulo}</h4>
-        <label className="flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
+        <div className="flex items-center gap-2">
+          <CheckTarea
             checked={nota.completed}
+            id={`check-${nota._id}`}
             onChange={toggleEstado}
-            className="accent-green-600 w-4 h-4"
           />
-          {nota.completed ? 'Completada' : 'Pendiente'}
-        </label>
+        </div>
       </div>
 
       <p className="mb-2">{nota.nota}</p>
@@ -59,22 +57,20 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
 
       <div className="flex gap-3">
         <button
-            onClick={() => onEditar(nota)}
-            title="Editar"
-            className="text-yellow-600 hover:text-yellow-800"
+          onClick={() => onEditar(nota)}
+          title="Editar"
+          className="text-yellow-600 hover:text-yellow-800"
         >
-            <PencilSquareIcon className="h-5 w-5" />
+          <PencilSquareIcon className="h-5 w-5" />
         </button>
         <button
-            onClick={handleEliminar}
-            title="Eliminar"
-            className="text-red-600 hover:text-red-800"
+          onClick={handleEliminar}
+          title="Eliminar"
+          className="text-red-600 hover:text-red-800"
         >
-            <TrashIcon className="h-5 w-5" />
+          <TrashIcon className="h-5 w-5" />
         </button>
-        </div>
-
-
+      </div>
     </div>
   );
 };

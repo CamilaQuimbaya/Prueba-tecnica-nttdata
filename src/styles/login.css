@@ -1,0 +1,59 @@
+/* login.css */
+.login-bg {
+  background-image: url('https://i.pinimg.com/736x/73/9e/9d/739e9d475cfa5e5f44470057c1e05484.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+
+.login-card {
+  /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.31);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.2px);
+    -webkit-backdrop-filter: blur(11.2px);
+    border: 1px solid rgba(255, 255, 255, 0.41);
+    }
+
+    /* From Uiverse.io by adamgiebl */ 
+.neu-button {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 10px;
+ font-family: inherit;
+ font-size: 13px;
+ font-weight: 500;
+ letter-spacing: 0.4px;
+ color: #ff3097;
+ background-color: #fff8b7af;
+ border-style: solid;
+ border-width: 2px 2px 2px 2px;
+ border-color: rgba(255, 255, 255, 0.158);
+ border-radius: 40px 40px 40px 40px;
+ padding: 16px 24px 16px 28px;
+ transform: translate(0px, 0px) rotate(0deg);
+ transition: 0.2s;
+}
+
+.neu-button:hover {
+ color: #ff3097;
+ background-color: #fff8b7d7;
+ box-shadow: -2px -1px 8px 0px #ffffff3f, 2px 1px 8px 0px rgba(204, 95, 231, 0.48);
+}
+
+.neu-button:active {
+   box-shadow: none;
+}
+
+.neu-button:focus {
+  box-shadow: 0 4px 3px 1px #fcfcfc00, 0 6px 8px #d9d9d633, 0 -4px 4px #d1d1ce36, 0 -6px 4px #fefefe27, inset 0 0 5px 3px #9999999a, inset 0 0 30px #aaaaaa9f;
+  color: #ff3097;
+}
