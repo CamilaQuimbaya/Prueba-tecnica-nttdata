@@ -1,4 +1,6 @@
 import { actualizarNota, eliminarNota } from '../services/noteService';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+
 
 interface Nota {
   _id: string;
@@ -56,20 +58,24 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar }: Props) => {
         {new Date(nota.fecha).toLocaleString()}
       </small>
 
-      <div className="flex gap-4 text-sm">
+      <div className="flex gap-3">
         <button
-          onClick={() => onEditar(nota)}
-          className="text-yellow-600 hover:underline"
+            onClick={() => onEditar(nota)}
+            title="Editar"
+            className="text-yellow-600 hover:text-yellow-800"
         >
-          Editar
+            <PencilSquareIcon className="h-5 w-5" />
         </button>
         <button
-          onClick={handleEliminar}
-          className="text-red-600 hover:underline"
+            onClick={handleEliminar}
+            title="Eliminar"
+            className="text-red-600 hover:text-red-800"
         >
-          Eliminar
+            <TrashIcon className="h-5 w-5" />
         </button>
-      </div>
+        </div>
+
+
     </div>
   );
 };

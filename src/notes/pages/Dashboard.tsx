@@ -7,6 +7,8 @@ import FormularioNota from '../components/FormularioNota';
 import ListaNotas from '../components/ListaNotas';
 import Modal from '../../components/Modal';
 import IndicadorProgreso from '../components/IndicadorProgreso';
+import BarraBusqueda from '../components/BarraBusqueda';
+
 
 
 interface Nota {
@@ -24,6 +26,8 @@ const Dashboard = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const total = notas.length;
   const completadas = notas.filter(n => n.completed).length;
+  const [busqueda, setBusqueda] = useState('');
+
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,6 +40,12 @@ const Dashboard = () => {
       setError('Error al cargar notas');
     }
   };
+
+  const notasFiltradas = notas.filter(nota =>
+  nota.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
+  nota.nota.toLowerCase().includes(busqueda.toLowerCase())
+);
+
 
   useEffect(() => {
     cargarNotas();
@@ -70,17 +80,33 @@ const Dashboard = () => {
       </header>
 
       {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+      <BarraBusqueda valor={busqueda} onBuscar={setBusqueda} />
+
 
       <IndicadorProgreso total={total} completadas={completadas} />
 
       <ListaNotas
-        notas={notas}
+        notas={notasFiltradas}
         onActualizar={cargarNotas}
         onEditar={(nota) => {
-          setNotaEditando(nota);
-          setMostrarModal(true);
+            setNotaEditando(nota);
+            setMostrarModal(true);
         }}
-      />
+        />
+
+        {notas.length === 0 && (
+        <p className="text-sm text-gray-500 text-center mt-4">
+            Aún no tienes notas creadas.
+        </p>
+        )}
+
+        {notas.length > 0 && notasFiltradas.length === 0 && (
+        <p className="text-sm text-gray-500 text-center mt-4">
+            😕 No se encontraron notas que coincidan con "<strong>{busqueda}</strong>"
+        </p>
+        )}
+
+
 
       <Modal open={mostrarModal} onClose={() => setMostrarModal(false)}>
         <FormularioNota

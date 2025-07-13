@@ -15,8 +15,6 @@ interface Props {
 }
 
 const ListaNotas = ({ notas, onActualizar, onEditar }: Props) => {
-  if (!notas.length) return <p>No tienes notas aún.</p>;
-
   return (
     <div>
       {notas.map(n => (
