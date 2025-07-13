@@ -8,6 +8,7 @@ import BarraBusqueda from '../components/BarraBusqueda';
 import Loader from '../../components/Loader';
 import LogoutButton from '../../components/LogoutButton';
 import CreateNoteButton from '../components/CreateNoteButton';
+import { ViewColumnsIcon, ListBulletIcon } from '@heroicons/react/24/outline'; 
 import '../../styles/dashboard.css'
 
 
@@ -98,22 +99,19 @@ const Dashboard = () => {
       <IndicadorProgreso total={total} completadas={completadas} />
       <div className="mb-4 flex gap-4">
           <button
-            className={`px-4 py-2 rounded ${vista === 'lista' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             onClick={() => {
-              setVista('lista');
-              localStorage.setItem('vistaNotas', 'lista');
+              const nuevaVista = vista === 'grid' ? 'lista' : 'grid';
+              setVista(nuevaVista);
+              localStorage.setItem('vistaNotas', nuevaVista);
             }}
+            className="p-2 rounded-full border border-white hover:bg-blue-100 transition"
+            title={vista === 'grid' ? 'Ver como lista' : 'Ver como cuadrícula'}
           >
-            Lista
-          </button>
-          <button
-            className={`px-4 py-2 rounded ${vista === 'grid' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-            onClick={() => {
-              setVista('grid');
-              localStorage.setItem('vistaNotas', 'grid');
-            }}
-          >
-            Grid
+            {vista === 'grid' ? (
+              <ListBulletIcon className="h-5 w-5 text-white hover:text-purple-700" />
+            ) : (
+              <ViewColumnsIcon className="h-5 w-5 text-white  hover:text-purple-700" />
+            )}
           </button>
         </div>
 
