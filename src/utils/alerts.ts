@@ -58,3 +58,16 @@ export const mostrarDespedida = () => {
   });
 };
 
+
+export const alertaSesionExpirada = () => {
+  return Swal.fire({
+    title: 'Sesión expirada',
+    text: 'Tu sesión ha expirado. Por favor, inicia sesión de nuevo.',
+    icon: 'warning',
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar',
+    background: '#fff',
+    color: '#333',
+  });
+};
+

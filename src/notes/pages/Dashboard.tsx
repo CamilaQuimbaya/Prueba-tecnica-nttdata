@@ -30,6 +30,8 @@ const Dashboard = () => {
   const completadas = notas.filter(n => n.completed).length;
   const [busqueda, setBusqueda] = useState('');
   const [cargando, setCargando] = useState(false);
+  const [vista, setVista] = useState<'lista' | 'grid'>('lista');
+
 
 
   
@@ -91,15 +93,33 @@ const Dashboard = () => {
 
 
       <IndicadorProgreso total={total} completadas={completadas} />
+      <div className="flex gap-2 mb-4">
+  <button
+    onClick={() => setVista('lista')}
+    className={`px-3 py-1 rounded ${vista === 'lista' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+  >
+    Lista
+  </button>
+  <button
+    onClick={() => setVista('grid')}
+    className={`px-3 py-1 rounded ${vista === 'grid' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+  >
+    Grid
+  </button>
+</div>
+
 
       <ListaNotas
-        notas={notasFiltradas}
-        onActualizar={cargarNotas}
-        onEditar={(nota) => {
-            setNotaEditando(nota);
-            setMostrarModal(true);
-        }}
-        />
+  notas={notasFiltradas}
+  onActualizar={cargarNotas}
+  onEditar={(nota) => {
+    setNotaEditando(nota);
+    setMostrarModal(true);
+  }}
+  vista={vista}
+/>
+
+
 
         {notas.length === 0 && (
         <p className="text-sm text-white text-center mt-4">
