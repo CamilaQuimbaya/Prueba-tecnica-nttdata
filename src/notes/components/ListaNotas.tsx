@@ -1,4 +1,5 @@
 import NotaCard from './NotaCard';
+import '../../styles/notaCard.css'
 
 interface Nota {
   _id: string;
@@ -16,7 +17,7 @@ interface Props {
 
 const ListaNotas = ({ notas, onActualizar, onEditar }: Props) => {
   return (
-    <div>
+    <div className='backgroundcard p-6 rounded-lg shadow-lg'>
       {notas.map(n => (
         <NotaCard
           key={n._id}
