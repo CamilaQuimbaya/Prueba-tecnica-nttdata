@@ -37,7 +37,7 @@ const StyledWrapper = styled.div`
   .IconContainer {
     width: 30px;
     height: 30px;
-    background: linear-gradient(to bottom, rgb(255, 136, 255), rgb(172, 70, 255));
+    background: linear-gradient(to bottom, rgb(226, 141, 238), rgb(172, 70, 255));
     border-radius: 50px;
     display: flex;
     align-items: center;

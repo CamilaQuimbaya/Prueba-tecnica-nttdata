@@ -69,7 +69,25 @@ const Dashboard = () => {
     <div className="p-4 backgroundDashboard min-h-screen ">
       
       <header className="flex flex-col md:flex-row items-center md:justify-between gap-4 mb-6  p-6 headerDashboard">
-        <h2 className="text-2xl font-bold text-center md:text-left text-white">Mis Notas</h2>
+        <div className='w-full md:w-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4 mb-4 md:mb-0 text-center'>
+          <h2 className="text-2xl font-bold text-center md:text-left text-white">Mis Notas</h2>
+          <button
+              onClick={() => {
+                const nuevaVista = vista === 'grid' ? 'lista' : 'grid';
+                setVista(nuevaVista);
+                localStorage.setItem('vistaNotas', nuevaVista);
+              }}
+              className="p-2 rounded-full border border-white hover:bg-blue-100 transition"
+              title={vista === 'grid' ? 'Ver como lista' : 'Ver como cuadrícula'}
+            >
+              {vista === 'grid' ? (
+                <ListBulletIcon className="h-5 w-5 text-white hover:text-purple-700" />
+              ) : (
+                <ViewColumnsIcon className="h-5 w-5 text-white  hover:text-purple-700" />
+              )}
+            </button>
+        </div>
+        
 
         <div className="flex justify-center w-full md:w-auto">
           <BarraBusqueda valor={busqueda} onBuscar={setBusqueda} />
@@ -97,35 +115,18 @@ const Dashboard = () => {
 
 
       <IndicadorProgreso total={total} completadas={completadas} />
-      <div className="mb-4 flex gap-4">
-          <button
-            onClick={() => {
-              const nuevaVista = vista === 'grid' ? 'lista' : 'grid';
-              setVista(nuevaVista);
-              localStorage.setItem('vistaNotas', nuevaVista);
-            }}
-            className="p-2 rounded-full border border-white hover:bg-blue-100 transition"
-            title={vista === 'grid' ? 'Ver como lista' : 'Ver como cuadrícula'}
-          >
-            {vista === 'grid' ? (
-              <ListBulletIcon className="h-5 w-5 text-white hover:text-purple-700" />
-            ) : (
-              <ViewColumnsIcon className="h-5 w-5 text-white  hover:text-purple-700" />
-            )}
-          </button>
-        </div>
 
 
 
       <ListaNotas
-  notas={notasFiltradas}
-  onActualizar={cargarNotas}
-  onEditar={(nota) => {
-    setNotaEditando(nota);
-    setMostrarModal(true);
-  }}
-  vista={vista}
-/>
+        notas={notasFiltradas}
+        onActualizar={cargarNotas}
+        onEditar={(nota) => {
+          setNotaEditando(nota);
+          setMostrarModal(true);
+        }}
+        vista={vista}
+      />
 
 
 
