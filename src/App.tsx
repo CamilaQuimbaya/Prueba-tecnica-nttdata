@@ -5,6 +5,8 @@ import PrivateRoute from './routes/PrivateRoute';
 import Dashboard from './notes/pages/Dashboard';
 import Register from './auth/pages/Register';
 import PageWrapper from './components/PageWrapper';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import './styles/globalScrollbar.css';
 
@@ -27,7 +29,17 @@ const App = () => {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
     </AnimatePresence>
+    
   );
 };
 

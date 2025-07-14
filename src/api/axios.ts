@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { alertaSesionExpirada } from '../utils/alerts';
+import { toast } from 'react-toastify';
 
 const api = axios.create({
   baseURL: 'https://backend-crud-y-jwt-production.up.railway.app/api',
-
 });
 
 // ✅ Intercepta solicitudes: agrega token
@@ -15,15 +15,21 @@ api.interceptors.request.use(config => {
   return config;
 });
 
-// ✅ Intercepta respuestas: detecta token expirado
+// ✅ Intercepta respuestas: sesión expirada o errores generales
 api.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response?.status === 401) {
-      await alertaSesionExpirada(); // espera a que el usuario confirme
+    const status = error.response?.status;
+    const mensaje = error.response?.data?.msg || 'Error del servidor';
+
+    if (status === 401 && mensaje === 'Token no valido') {
+      await alertaSesionExpirada();
       localStorage.removeItem('token');
       window.location.href = '/login';
+    } else {
+      toast.error(`⚠️ ${mensaje}`);
     }
+
     return Promise.reject(error);
   }
 );
