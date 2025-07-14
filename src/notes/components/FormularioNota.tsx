@@ -123,7 +123,7 @@ const FormularioNota = ({ onNotaGuardada, notaExistente }: Props) => {
       <span className="col-span-1" />
       <button
         type="submit"
-        className="bg-yellow-100 text-purple-600 stroke-pink-300 border border-pink-400 col-span-4 flex justify-center items-center gap-2 rounded-lg p-2 duration-300 hover:border-purple-400 hover:text-purple-600 focus:stroke-pink-600-200 focus:bg-pink-200"
+        className="bg-yellow-100 text-purple-400 stroke-pink-300 border border-pink-200 col-span-4 flex justify-center items-center gap-2 rounded-lg p-2 duration-300 hover:border-purple-400 hover:text-purple-600 focus:stroke-pink-600-200 focus:bg-pink-200"
       >
         <SparklesIcon className="h-5 w-5" />
         {notaExistente ? 'Guardar Cambios' : 'Guardar Nota'}

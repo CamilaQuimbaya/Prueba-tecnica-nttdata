@@ -62,7 +62,7 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar, onVerDetalle }: Props) =>
       </div>
     </div>
 
-    <p className="mb-2 text-purple-800 line-clamp-2">{nota.nota}</p>
+    <p className="mb-2 text-purple-400 line-clamp-2">{nota.nota}</p>
 
     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-sm text-purple-800 mb-2">
       <span className="flex items-center gap-1">
