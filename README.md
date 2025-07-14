@@ -61,7 +61,7 @@ my-note-app/
 ## 🧪 Pruebas
 
 Incluye al menos una prueba unitaria usando **Jest + React Testing Library**.  
-Ejemplo: prueba para verificar que el componente `NotaCard` renderiza correctamente su contenido y botones.
+Ejemplo: prueba para verificar que el componente `Login`y el componente `Registro` renderiza correctamente su contenido y botones.
 
 ```bash
 npm run test
