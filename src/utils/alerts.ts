@@ -4,7 +4,7 @@ export const mostrarAlertaExito = (mensaje: string) => {
   Swal.fire({
     title: '¡Éxito!',
     text: mensaje,
-    imageUrl: 'https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif',
+    imageUrl: 'https://i.gifer.com/6kb.gif',
     imageWidth: 200,
     imageAlt: 'Éxito',
     confirmButtonColor: '#3085d6',
@@ -39,7 +39,7 @@ export const mostrarBienvenida = () => {
   Swal.fire({
     title: `¡Te extrañamos!`,
     text: 'Bienvenido a Mis Notas',
-    imageUrl: 'https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif',
+    imageUrl: 'https://i.gifer.com/2iFd.gif',
     imageWidth: 250,
     imageAlt: 'Bienvenida',
     confirmButtonColor: '#6366f1',
@@ -51,7 +51,7 @@ export const nuevaBienvenida = () => {
   Swal.fire({
     title: `¡Que gusto que te unas!`,
     text: 'Bienvenido a Mis Notas',
-    imageUrl: 'https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif',
+    imageUrl: 'https://i.gifer.com/2iFd.gif',
     imageWidth: 250,
     imageAlt: 'Bienvenida',
     confirmButtonColor: '#6366f1',
@@ -63,7 +63,7 @@ export const mostrarDespedida = () => {
   return Swal.fire({
     title: '¡Hasta pronto! 👋',
     text: 'Has cerrado sesión exitosamente.',
-    imageUrl: 'https://media.giphy.com/media/3oKIPwoeGErMmaI43C/giphy.gif',
+    imageUrl: 'https://i.gifer.com/1V7X.gif',
     imageWidth: 250,
     confirmButtonColor: '#6366f1',
     confirmButtonText: 'Volver al login'
