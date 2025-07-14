@@ -1,6 +1,9 @@
 import NotaCard from './NotaCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../styles/notaList.css';
+import { useState } from 'react';
+import Modal from '../../components/Modal';
+import { VistaNotaCompleta } from './VistaNotaCompleta';
 
 interface Nota {
   _id: string;
@@ -18,13 +21,13 @@ interface Props {
 }
 
 const ListaNotas = ({ notas, onActualizar, onEditar, vista }: Props) => {
+  const [notaSeleccionada, setNotaSeleccionada] = useState<Nota | null>(null);
   if (notas.length === 0) return null; // 👈 Ocultar si no hay notas
   return (
     <motion.div
       layout
-      className={`backgroundList p-6 rounded-lg shadow-lg grid gap-4 ${
-        vista === 'grid' ? 'grid-cols-2' : 'grid-cols-1'
-      }`}
+      className={`backgroundList p-6 rounded-lg shadow-lg grid gap-4 ${vista === 'grid' ? 'grid-cols-2' : 'grid-cols-1'
+        }`}
     >
       <AnimatePresence mode="popLayout">
         {notas.map((n) => (
@@ -40,10 +43,15 @@ const ListaNotas = ({ notas, onActualizar, onEditar, vista }: Props) => {
               nota={n}
               onNotaActualizada={onActualizar}
               onEditar={onEditar}
+              onVerDetalle={(nota) => setNotaSeleccionada(nota)}
             />
           </motion.div>
         ))}
       </AnimatePresence>
+      <Modal open={!!notaSeleccionada} onClose={() => setNotaSeleccionada(null)}>
+        {notaSeleccionada && <VistaNotaCompleta nota={notaSeleccionada} />}
+      </Modal>
+
     </motion.div>
   );
 };

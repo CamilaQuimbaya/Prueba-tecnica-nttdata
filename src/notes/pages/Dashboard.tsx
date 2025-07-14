@@ -8,11 +8,8 @@ import BarraBusqueda from '../components/BarraBusqueda';
 import Loader from '../../components/Loader';
 import LogoutButton from '../../components/LogoutButton';
 import CreateNoteButton from '../components/CreateNoteButton';
-import { ViewColumnsIcon, ListBulletIcon } from '@heroicons/react/24/outline'; 
+import { ViewColumnsIcon, ListBulletIcon } from '@heroicons/react/24/outline';
 import '../../styles/dashboard.css'
-
-
-
 
 interface Nota {
   _id: string;
@@ -32,67 +29,56 @@ const Dashboard = () => {
   const [busqueda, setBusqueda] = useState('');
   const [cargando, setCargando] = useState(false);
   const [vista, setVista] = useState<'lista' | 'grid'>(
-  () => (localStorage.getItem('vistaNotas') as 'lista' | 'grid') || 'lista'
-);
-
-
-
-
-  
+    () => (localStorage.getItem('vistaNotas') as 'lista' | 'grid') || 'lista'
+  );
 
   const cargarNotas = async () => {
-  try {
-    setCargando(true);
-    const { data } = await obtenerNotas();
-    setNotas(data);
-  } catch {
-    setError('Error al cargar notas');
-  } finally {
-    setCargando(false);
-  }
-};
+    try {
+      setCargando(true);
+      const { data } = await obtenerNotas();
+      setNotas(data);
+    } catch {
+      setError('Error al cargar notas');
+    } finally {
+      setCargando(false);
+    }
+  };
 
   const notasFiltradas = notas.filter(nota =>
-  nota.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
-  nota.nota.toLowerCase().includes(busqueda.toLowerCase())
-);
+    nota.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
+    nota.nota.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
 
   useEffect(() => {
     cargarNotas();
   }, []);
 
-
-
-
   return (
     <div className="p-4 backgroundDashboard min-h-screen ">
-      
+
       <header className="flex flex-col md:flex-row items-center md:justify-between gap-4 mb-6  p-6 headerDashboard">
         <div className='w-full md:w-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4 mb-4 md:mb-0 text-center'>
           <h2 className="text-2xl font-bold text-center md:text-left text-white">Mis Notas</h2>
           <button
-              onClick={() => {
-                const nuevaVista = vista === 'grid' ? 'lista' : 'grid';
-                setVista(nuevaVista);
-                localStorage.setItem('vistaNotas', nuevaVista);
-              }}
-              className="p-2 rounded-full border border-white hover:bg-blue-100 transition"
-              title={vista === 'grid' ? 'Ver como lista' : 'Ver como cuadrícula'}
-            >
-              {vista === 'grid' ? (
-                <ListBulletIcon className="h-5 w-5 text-white hover:text-purple-700" />
-              ) : (
-                <ViewColumnsIcon className="h-5 w-5 text-white  hover:text-purple-700" />
-              )}
-            </button>
+            onClick={() => {
+              const nuevaVista = vista === 'grid' ? 'lista' : 'grid';
+              setVista(nuevaVista);
+              localStorage.setItem('vistaNotas', nuevaVista);
+            }}
+            className="p-2 rounded-full border border-white hover:bg-blue-100 transition"
+            title={vista === 'grid' ? 'Ver como lista' : 'Ver como cuadrícula'}
+          >
+            {vista === 'grid' ? (
+              <ListBulletIcon className="h-5 w-5 text-white hover:text-purple-700" />
+            ) : (
+              <ViewColumnsIcon className="h-5 w-5 text-white  hover:text-purple-700" />
+            )}
+          </button>
         </div>
-        
-
         <div className="flex justify-center w-full md:w-auto">
           <BarraBusqueda valor={busqueda} onBuscar={setBusqueda} />
         </div>
-
         <div className="flex gap-4 justify-center md:justify-end">
           <CreateNoteButton
             onClick={() => {
@@ -103,21 +89,13 @@ const Dashboard = () => {
           <LogoutButton />
         </div>
       </header>
-
-
       {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
       {cargando && (
         <div className="flex justify-center my-8">
-            <Loader />
+          <Loader />
         </div>
-        )}
-
-
-
+      )}
       <IndicadorProgreso total={total} completadas={completadas} />
-
-
-
       <ListaNotas
         notas={notasFiltradas}
         onActualizar={cargarNotas}
@@ -127,23 +105,17 @@ const Dashboard = () => {
         }}
         vista={vista}
       />
-
-
-
-        {notas.length === 0 && (
+      {notas.length === 0 && (
         <p className="text-sm text-white text-center mt-4">
-            Aún no tienes notas creadas.
+          Aún no tienes notas creadas.
         </p>
-        )}
+      )}
 
-        {notas.length > 0 && notasFiltradas.length === 0 && (
+      {notas.length > 0 && notasFiltradas.length === 0 && (
         <p className="text-sm text-white text-center mt-4">
-            😕 No se encontraron notas que coincidan con "<strong>{busqueda}</strong>"
+          😕 No se encontraron notas que coincidan con "<strong>{busqueda}</strong>"
         </p>
-        )}
-
-
-
+      )}
       <Modal open={mostrarModal} onClose={() => setMostrarModal(false)}>
         <FormularioNota
           onNotaGuardada={() => {
