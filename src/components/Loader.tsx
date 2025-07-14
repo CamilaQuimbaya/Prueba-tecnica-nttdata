@@ -1,3 +1,5 @@
+// src/components/Loader.tsx
+
 const Loader = () => {
   return (
     <div className="loader relative flex gap-[0.3em] h-8">

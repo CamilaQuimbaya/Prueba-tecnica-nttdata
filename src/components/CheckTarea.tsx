@@ -4,6 +4,13 @@ interface Props {
   id: string;
 }
 
+// Componente CheckTarea
+// Este componente es un checkbox estilizado que se utiliza para marcar tareas como completadas
+// Recibe tres props: checked (booleano que indica si la tarea está completada),
+// onChange (función que se ejecuta al cambiar el estado del checkbox) e id
+// (string que identifica el checkbox)
+// Utiliza Tailwind CSS para el estilo y SVG para mostrar un icono de verificación
+
 const CheckTarea = ({ checked, onChange, id }: Props) => {
   return (
     <label

@@ -7,6 +7,10 @@ import '../../styles/login.css';
 import NoteLoad from '../../components/NoteLoad';
 import {nuevaBienvenida} from '../../utils/alerts';
 
+// Componente de Registro
+// Este componente maneja el registro de nuevos usuarios
+// Permite a los usuarios crear una cuenta ingresando su nombre, correo y contraseña
+
 const Register = () => {
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');

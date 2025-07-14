@@ -32,17 +32,23 @@ const Dashboard = () => {
     () => (localStorage.getItem('vistaNotas') as 'lista' | 'grid') || 'lista'
   );
 
+  // Carga las notas desde el servicio y maneja errores
+  // Utiliza un estado de carga para mostrar un loader mientras se obtienen las notas
+
   const cargarNotas = async () => {
     try {
       setCargando(true);
-      const { data } = await obtenerNotas();
+      const { data } = await obtenerNotas(); // Llama al servicio para obtener las notas
       setNotas(data);
     } catch {
-      setError('Error al cargar notas');
+      setError('Error al cargar notas'); // Maneja el error si no se pueden cargar las notas
     } finally {
       setCargando(false);
     }
   };
+
+  // Filtra las notas según la búsqueda
+  // Compara el título y el contenido de la nota con el texto de búsqueda
 
   const notasFiltradas = notas.filter(nota =>
     nota.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||

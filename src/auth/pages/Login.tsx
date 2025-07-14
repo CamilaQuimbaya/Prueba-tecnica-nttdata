@@ -7,27 +7,36 @@ import { mostrarBienvenida } from '../../utils/alerts';
 import NoteLoad from '../../components/NoteLoad';
 import '../../styles/login.css';
 
-
+// Componente de Login
+// Este componente maneja el inicio de sesión del usuario
 
 const Login = () => {
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState('');
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch(); // Hook para acceder al dispatch de Redux
+  // Hook para navegar a otras rutas
   const navigate = useNavigate();
 
+  // Maneja el envío del formulario
+  // Intenta iniciar sesión y redirige al usuario si tiene éxito
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     try {
-      const token = await login({ correo, contrasena });
-      dispatch(loginSuccess(token));
+      const token = await login({ correo, contrasena });// Llama al servicio de autenticación para iniciar sesión
+      dispatch(loginSuccess(token)); // Guarda el token en el estado de Redux
+      // Muestra una alerta de bienvenida
        mostrarBienvenida();
       navigate('/');
     } catch (err) {
       setError('Credenciales inválidas');
     }
   };
+
+  // Renderiza el formulario de inicio de sesión
+  // Incluye campos para correo y contraseña, y un botón para enviar el formulario
+  // También muestra un enlace para registrarse si el usuario no tiene cuenta
 
   return (
     <div className="login-bg">

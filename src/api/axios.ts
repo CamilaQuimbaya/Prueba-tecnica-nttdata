@@ -1,3 +1,8 @@
+//este archivo es para configurar axios y manejar la autenticación con JWT
+//se interceptan las solicitudes para agregar el token y manejar errores de sesión expirada
+//también se maneja la respuesta de error para mostrar mensajes adecuados al usuario
+//se usa react-toastify para mostrar notificaciones de error
+
 import axios from 'axios';
 import { alertaSesionExpirada } from '../utils/alerts';
 import { toast } from 'react-toastify';
@@ -22,7 +27,7 @@ api.interceptors.response.use(
     const status = error.response?.status;
     const mensaje = error.response?.data?.msg || 'Error del servidor';
 
-    if (status === 401 && mensaje === 'Token no valido') {
+    if (status === 401 && mensaje === 'Token no valido') { // Si el token no es válido, muestra alerta y redirige a login
       await alertaSesionExpirada();
       localStorage.removeItem('token');
       window.location.href = '/login';
