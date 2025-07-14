@@ -43,6 +43,8 @@ my-note-app/
 - **Jest + React Testing Library** (pruebas)
 - **Vercel** (frontend desplegado)
 - **Railway** (backend desplegado: Express + MongoDB)
+- **Framer Motion** (animaciones suaves y controladas)
+- **React Icons** (íconos SVG personalizables)
 
 ## ✅ Funcionalidades
 
@@ -63,6 +65,7 @@ Ejemplo: prueba para verificar que el componente `NotaCard` renderiza correctame
 
 ```bash
 npm run test
+
 ```
 
 ## 🧠 Justificación tecnológica
