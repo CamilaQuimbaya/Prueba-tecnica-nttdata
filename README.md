@@ -94,6 +94,20 @@ Aproximadamente **12 horas** distribuidas así:
 - 1h testing y detalles finales
 - 2h despliegue, documentación y pruebas cruzadas
 
+## 🗂️ Organización del proyecto
+
+Decidí organizar las carpetas siguiendo una estructura por dominios, lo cual facilita el mantenimiento, escalabilidad y separación de responsabilidades. Cada carpeta dentro de `src/` agrupa funcionalidad relacionada de forma coherente:
+
+- `api/`: Contiene la configuración de Axios y los servicios HTTP reutilizables para centralizar la lógica de red.
+- `app/`: Incluye el store de Redux y los hooks globales de acceso al estado. Esta carpeta representa la configuración base de la aplicación.
+- `auth/`: Aglutina todo lo relacionado con autenticación: componentes, páginas, servicios y slice de Redux, siguiendo el principio de separación por dominio.
+- `notes/`: Contiene toda la lógica y componentes relacionados con la gestión de notas/tareas. Al igual que `auth`, mantiene su lógica encapsulada y clara.
+- `components/`: Guarda componentes compartidos entre distintos dominios, como Navbar o Spinner.
+- `routes/`: Contiene la definición de rutas protegidas para el acceso condicional según la autenticación.
+- `styles/`: Centraliza los estilos globales y configuraciones personalizadas de Tailwind si son necesarias.
+
+Esta estructura ayuda a mantener el código modular, facilita la reutilización y hace que escalar el proyecto (por ejemplo, agregando nuevos dominios como "profile" o "settings") sea más sencillo y limpio.
+
 ## 📦 Instalación local
 
 ```bash
