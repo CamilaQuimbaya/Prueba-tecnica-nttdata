@@ -58,7 +58,7 @@ const Dashboard = () => {
     <div className="p-4 backgroundDashboard min-h-screen ">
 
       <header className="flex flex-col md:flex-row items-center md:justify-between gap-4 mb-6  p-6 headerDashboard">
-        <div className='w-full md:w-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4 mb-4 md:mb-0 text-center'>
+        <div className='w-full md:w-auto flex flex-row md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4 mb-4 md:mb-0 text-center'>
           <h2 className="text-2xl font-bold text-center md:text-left text-white">Mis Notas</h2>
           <button
             onClick={() => {
