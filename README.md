@@ -70,10 +70,19 @@ npm run test
 
 ## 🧠 Justificación tecnológica
 
-Elegí **React con TypeScript** por su ecosistema moderno, excelente soporte de herramientas (Vite, Redux Toolkit, Testing Library), capacidad de escalar el proyecto por dominio y el control total sobre el tipado y flujo de datos.
+Elegí trabajar con **React y TypeScript** porque es un stack moderno que me permite desarrollar interfaces reactivas, escalables y mantenibles. TypeScript me ayuda muchísimo a evitar errores en tiempo de desarrollo gracias al tipado fuerte, y además mejora mucho la experiencia al trabajar en equipo o mantener el código a largo plazo.
 
-Además, **Redux Toolkit** permitió manejar el estado de autenticación y notas de forma clara y centralizada.  
-**TailwindCSS** me ayudó a lograr una interfaz limpia y responsiva con rapidez.
+Usé **Vite** como bundler porque es súper rápido y simplifica mucho la configuración inicial. Me permitió enfocarme directamente en la lógica y la estructura del proyecto, sin perder tiempo en configuraciones complejas.
+
+Para manejar el estado decidí usar **Redux Toolkit** porque me permite estructurar el estado global por dominios (como auth y notas) de forma clara y con menos código repetido. También se integra muy bien con TypeScript y hace que el flujo de datos sea predecible y fácil de depurar.
+
+Con **Axios** gestioné todas las peticiones HTTP. Me gusta usarlo porque puedo crear una instancia personalizada para tener una configuración global (como headers, interceptores, etc.) y centralizar toda la lógica de red.
+
+El diseño lo hice con **TailwindCSS** porque me permite crear interfaces modernas, responsivas y bien organizadas sin escribir tanto CSS. Me ayudó a avanzar rápido en el diseño y mantener consistencia visual en todos los componentes.
+
+También agregué **Framer Motion** para darle vida a la app con animaciones suaves, y **React Icons** para mejorar la estética y la usabilidad con íconos accesibles y ligeros.
+
+Por último, incluí pruebas con **Vitest**, **Jest** y **React Testing Library** porque considero importante asegurar que los componentes clave funcionen correctamente, y me gusta mantener una base mínima de tests incluso en proyectos pequeños.
 
 ## ⏱️ Tiempo estimado de desarrollo
 
