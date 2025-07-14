@@ -6,6 +6,8 @@ import Dashboard from './notes/pages/Dashboard';
 import Register from './auth/pages/Register';
 import PageWrapper from './components/PageWrapper';
 import './index.css';
+import './styles/globalScrollbar.css';
+
 
 const App = () => {
   const location = useLocation();
