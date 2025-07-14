@@ -92,7 +92,7 @@ cd my-note-app
 # 2. Instalar dependencias
 npm install
 
-```bash
+
 # 3. Ejecutar en modo desarrollo
 npm run dev
 ```
