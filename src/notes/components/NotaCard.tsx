@@ -27,7 +27,6 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar, onVerDetalle }: Props) =>
       await actualizarNota(nota._id, { completed: !nota.completed });
       onNotaActualizada();
     } catch {
-      alert('Error al actualizar nota');
       mostrarError('Ocurrió un error al actualizar la nota');
     }
   };
@@ -83,14 +82,14 @@ const NotaCard = ({ nota, onNotaActualizada, onEditar, onVerDetalle }: Props) =>
       <button
         onClick={() => onEditar(nota)}
         title="Editar"
-        className="glassButton text-pink-500 hover:text-yellow-600 p-2"
+        className="glassButton text-pink-400 hover:text-yellow-600 p-2"
       >
         <PencilSquareIcon className="h-5 w-5" />
       </button>
       <button
         onClick={handleEliminar}
         title="Eliminar"
-        className="glassButton text-red-500 hover:text-red-600 p-2"
+        className="glassButton text-red-800 hover:text-red-600 p-2"
       >
         <TrashIcon className="h-5 w-5" />
       </button>

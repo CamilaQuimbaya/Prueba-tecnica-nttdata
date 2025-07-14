@@ -47,6 +47,18 @@ export const mostrarBienvenida = () => {
   });
 };
 
+export const nuevaBienvenida = () => {
+  Swal.fire({
+    title: `¡Que gusto que te unas!`,
+    text: 'Bienvenido a Mis Notas',
+    imageUrl: 'https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif',
+    imageWidth: 250,
+    imageAlt: 'Bienvenida',
+    confirmButtonColor: '#6366f1',
+    confirmButtonText: 'Continuar'
+  });
+};
+
 export const mostrarDespedida = () => {
   return Swal.fire({
     title: '¡Hasta pronto! 👋',

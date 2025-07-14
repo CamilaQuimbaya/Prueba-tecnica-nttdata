@@ -5,6 +5,7 @@ import { loginSuccess } from '../slice';
 import { register } from '../services/authService';
 import '../../styles/login.css';
 import NoteLoad from '../../components/NoteLoad';
+import {nuevaBienvenida} from '../../utils/alerts';
 
 const Register = () => {
   const [nombre, setNombre] = useState('');
@@ -20,9 +21,11 @@ const Register = () => {
     try {
       const token = await register({ nombre, correo, contrasena });
       dispatch(loginSuccess(token));
+      nuevaBienvenida();
       navigate('/');
     } catch (err) {
       setError('Error al registrar usuario');
+      
     }
   };
 
