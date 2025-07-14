@@ -2,7 +2,8 @@ import axios from 'axios';
 import { alertaSesionExpirada } from '../utils/alerts';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://backend-crud-y-jwt-production.up.railway.app/api',
+
 });
 
 // ✅ Intercepta solicitudes: agrega token
