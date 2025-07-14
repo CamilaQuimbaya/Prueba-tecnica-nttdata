@@ -80,7 +80,7 @@ Con **Axios** gestioné todas las peticiones HTTP. Me gusta usarlo porque puedo 
 
 El diseño lo hice con **TailwindCSS** porque me permite crear interfaces modernas, responsivas y bien organizadas sin escribir tanto CSS. Me ayudó a avanzar rápido en el diseño y mantener consistencia visual en todos los componentes.
 
-También agregué **Framer Motion** para darle vida a la app con animaciones suaves, y **React Icons** para mejorar la estética y la usabilidad con íconos accesibles y ligeros.
+También agregué **Framer Motion** para darle vida a la app con animaciones suaves, para mejorar la estética y la usabilidad con íconos accesibles y ligeros.
 
 Por último, incluí pruebas con **Vitest**, **Jest** y **React Testing Library** porque considero importante asegurar que los componentes clave funcionen correctamente, y me gusta mantener una base mínima de tests incluso en proyectos pequeños.
 
