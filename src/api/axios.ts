@@ -8,7 +8,7 @@ import { alertaSesionExpirada } from '../utils/alerts';
 import { toast } from 'react-toastify';
 
 const api = axios.create({
-  baseURL: 'https://backend-crud-y-jwt-production.up.railway.app/api',
+  baseURL: 'backend-crud-y-jwt-production.up.railway.app/api',
 });
 
 // ✅ Intercepta solicitudes: agrega token
